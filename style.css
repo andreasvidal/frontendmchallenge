@@ -1,185 +1,149 @@
+:root {
+    --white: hsl(0, 0%, 100%);
+    --lightGrey: hsl(217, 12%, 63%);
+    --mediumGrey: hsla(216, 12%, 54%, 0.205);
+    --darkBlue: hsl(213, 19%, 18%);
+    --veryDarkBlue: hsl(216, 12%, 8%);
+    --orange: hsl(25, 97%, 53%);
+}
+
+
+/*Important detail to avoid potential headaches. Border's width will be calculated in the total box size instead of overflowing*/
+
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: 'Overpass', sans-serif;
-    src: url(https://fonts.google.com/specimen/Overpass);
-}
-
-body,
-html {
-    background: var(--Very-Dark-Blue);
-    font-family: 'Overpass', sans-serif;
-}
-
-:root {
-    --color-primari-Orange: hsl(25, 97%, 53%);
-    --background-start-i: hsl(216deg 12% 54% / 22%);
-    --White: hsl(0, 0%, 100%);
-    --Light-Grey: hsl(217, 12%, 63%);
-    --Medium-Grey: hsl(216, 12%, 54%);
-    --Dark-Blue: hsl(213, 19%, 18%);
-    --Very-Dark-Blue: hsl(216, 12%, 8%);
-    --Font-size-paragraph: 15px;
-    --Font-family: 'Overpass', sans-serif;
-    --Weights: 400, 700
-}
-
-.container,
-.container-img {
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    font-family: "Overpass", sans-serif;
+    background-color: var(--veryDarkBlue);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: left;
-    background: var(--Dark-Blue);
-    width: 23.438rem;
-    padding: 1rem;
-    margin: 10% auto 0;
-    border-radius: 5% 5% 0 0;
-    align-items: center;
-    text-align: center;
-    background: var(--Dark-Blue);
 }
 
-.container-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background: var(--Dark-Blue);
-    margin: 0 auto;
-    border-radius: 0 0 10% 5%;
-    width: 23.438rem;
-    padding-bottom: 1.2rem;
+.card {
+    background-color: var(--darkBlue);
+    width: 90%;
+    padding: 1.5em;
+    border-radius: 1.5em;
+    margin: 2em auto;
 }
 
-.number {
+.heading {
+    margin-bottom: 0.5em;
+    color: var(--white);
+    font-size: 1.6rem;
+}
+
+.paragraph {
+    line-height: 1.7em;
+    margin-top: 0;
+    font-size: 0.9rem;
+}
+
+.paragraph,
+.numbers {
+    color: var(--lightGrey);
+}
+
+.numbers {
     display: flex;
-    background: var(--background-start-i);
-    padding: 0.8em 1.2em;
-    margin: 0.5rem;
-    border-radius: 50%;
+    justify-content: space-between;
+    margin: 1.7em 0;
     font-weight: bold;
-    color: var(--Light-Grey);
+}
+
+.circle-star {
+    background-color: var(--mediumGrey);
+    border-radius: 50%;
+    padding: 1em;
+}
+
+.circle {
+    background-color: var(--mediumGrey);
+    border-radius: 50%;
+    padding: 0.8em 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.circle:hover {
+    background-color: var(--lightGrey);
+    color: var(--white);
+}
+
+
+/*styles when clicked*/
+
+.circle:active {
+    background-color: var(--orange);
+    color: var(--white);
+}
+
+
+/*added class with JS to the selected rating*/
+
+.selected {
+    background-color: var(--lightGrey);
+    color: var(--white);
+}
+
+.evaluation button {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--white);
+    background-color: var(--orange);
+    border: none;
+    width: 100%;
+    padding: 1em;
+    border-radius: 2em;
+    display: block;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.evaluation button:active {
+    background-color: var(--white);
+    color: var(--orange);
+}
+
+.evaluation button:hover {
+    cursor: pointer;
+}
+
+.thankyou {
+    display: none;
+    text-align: center;
+}
+
+.thankyou img {
+    margin-bottom: 1em;
+}
+
+.rating {
+    background-color: var(--mediumGrey);
+    color: var(--orange);
+    border-radius: 1em;
+    padding: 0.4em 1.3em;
+    display: inline-block;
+    margin-bottom: 0.7em;
+}
+
+.evaluation {
+    display: block;
 }
 
 input[type="radio"] {
     display: none;
 }
 
-.selected {
-    color: var(--color-primari-Orange);
-    background: var(--background-start-i);
-    padding: 0.4em 1.3em;
-    display: inline-block;
-    margin: 0.7em;
-    border-radius: 1rem;
-}
-
-
-/*added class with JS to the selected rating*/
-
-.select {
-    background-color: var(--lightGrey);
-    color: var(--white);
-}
-
-.number:hover {
-    background-color: var(--color-primari-Orange);
-    transition: 1s;
-    cursor: pointer;
-}
-
-.title,
-.modal-title {
-    color: var(--White);
-    font-weight: 700;
-}
-
-.txt-p,
-.modal-txt {
-    color: var(--Medium-Grey);
-    margin-top: 1rem;
-    font-weight: 400;
-}
-
-.icon-start {
-    text-align: left;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 1rem 0 0.7rem;
-    background: var(--background-start-i);
-    padding: 0.5rem;
-    border-radius: 50%;
-}
-
-.submit {
-    background: var(--color-primari-Orange);
-    border: none;
-    width: 100%;
-    padding: 0.5rem 9rem;
-    border-radius: 1rem;
-    color: var(--White);
-    font-weight: 400;
-    font-size: 3vh;
-}
-
-.submit:hover {
-    background: var(--White);
-    color: var(--color-primari-Orange);
-    transition: 1s;
-    cursor: pointer;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 6.25rem;
-    /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 50% auto;
-    /* Full width */
-    height: 100%;
-    /* Full height */
-    overflow: auto;
-}
-
-
-/* Modal Content */
-
-.modal-content {
-    background-color: var(--Dark-Blue);
-    margin: auto;
-    padding: 1.25rem;
-    width: 40%;
-    text-align: center;
-    border-radius: 5%;
-}
-
-
-/* The Close Button */
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-title {
-    padding: 1rem;
+@media all and (min-width: 500px) {
+    .card {
+        padding: 1.9em;
+        width: 400px;
+    }
 }
